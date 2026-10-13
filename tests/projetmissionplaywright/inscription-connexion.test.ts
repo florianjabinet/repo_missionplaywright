@@ -9,13 +9,17 @@ const fakemail = faker.internet.email();
 
 test('creationcompte', async ({page, header, InscriptionUser}) => {
   
+
     await page.goto(process.env.URL!);
+
     await header.btnconnexion.click();
-    await InscriptionUser.btninscription.click();
-    await InscriptionUser.inscrnom.fill(fakenom);
-    await InscriptionUser.inscrmail.fill(fakemail);
-    await InscriptionUser.inscrpassword.fill('Passwordtest123&');
-    await InscriptionUser.inscrconfirmpassword.fill('Passwordtest123&');
+    await InscriptionUser.Inscription(fakenom, fakemail, 'Passwordtest123&', 'Passwordtest123&');
+   // await InscriptionUser.btninscription.click();
+   // await InscriptionUser.inscrnom.fill(fakenom);
+   // await InscriptionUser.inscrmail.fill(fakemail);
+   // await InscriptionUser.inscrpassword.fill('Passwordtest123&');
+   // await InscriptionUser.inscrconfirmpassword.fill('Passwordtest123&');
+   
     // création de constante pour vérifier le code 200 de la requête du site après une création en succès
     const responsePromise = page.waitForResponse(
     (resp) => resp.url().includes('/auth/v1/signup') && resp.request().method() === 'POST'

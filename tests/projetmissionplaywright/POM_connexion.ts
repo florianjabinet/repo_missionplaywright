@@ -1,12 +1,14 @@
 import {Locator, Page} from '@playwright/test';
 
 export class Authentification {
-    btnconnexion:Locator;
-    cnxmail:Locator;
-    cnxpassword:Locator;
-    validationcnx:Locator;
+    readonly page:Page;
+    readonly btnconnexion:Locator;
+    readonly cnxmail:Locator;
+    readonly cnxpassword:Locator;
+    readonly validationcnx:Locator;
 
-    constructor (private page : Page ) {
+    constructor ( page : Page) {
+    this.page = page;
     this.btnconnexion = this.page.getByTestId('login-tab');
     this.cnxmail = this.page.getByTestId('login-email-input');
     this.cnxpassword = this.page.getByTestId('login-password-input');
